@@ -1,11 +1,22 @@
-﻿using System.Collections;
+﻿/* EnemyController.cs
+ * 
+ * Samuel Ko
+ * 101168049
+ * Last Modified: 2020-10-20
+ * 
+ * Controls enemy movement.
+ * 
+ * 2020-10-20: Swapped veritcal movement with horizontal movement.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float horizontalSpeed;
-    public float horizontalBoundary;
+    public float verticalSpeed;
+    public float verticalBoundary;
     public float direction;
 
     // Update is called once per frame
@@ -17,19 +28,20 @@ public class EnemyController : MonoBehaviour
 
     private void _Move()
     {
-        transform.position += new Vector3(horizontalSpeed * direction * Time.deltaTime, 0.0f, 0.0f);
+        // Swap x and y
+        transform.position += new Vector3(0.0f, verticalSpeed * direction * Time.deltaTime, 0.0f);
     }
 
     private void _CheckBounds()
     {
-        // check right boundary
-        if (transform.position.x >= horizontalBoundary)
+        // check up boundary
+        if (transform.position.y >= verticalBoundary)
         {
             direction = -1.0f;
         }
 
-        // check left boundary
-        if (transform.position.x <= -horizontalBoundary)
+        // check down boundary
+        if (transform.position.y <= -verticalBoundary)
         {
             direction = 1.0f;
         }
