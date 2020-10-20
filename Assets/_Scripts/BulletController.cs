@@ -1,11 +1,22 @@
-﻿using System.Collections;
+﻿/* BulletController.cs
+ * 
+ * Samuel Ko
+ * 101168049
+ * Last Modified: 2020-10-20
+ * 
+ * Controls bullet movement.
+ * 
+ * 2020-10-20: Swapped veritcal movement with horizontal movement.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour, IApplyDamage
 {
-    public float verticalSpeed;
-    public float verticalBoundary;
+    public float horizontalSpeed;
+    public float horizontalBoundary;
     public BulletManager bulletManager;
     public int damage;
     
@@ -24,12 +35,13 @@ public class BulletController : MonoBehaviour, IApplyDamage
 
     private void _Move()
     {
-        transform.position += new Vector3(0.0f, verticalSpeed, 0.0f) * Time.deltaTime;
+        // Swap x and y
+        transform.position += new Vector3(horizontalSpeed, 0.0f, 0.0f) * Time.deltaTime;
     }
 
     private void _CheckBounds()
     {
-        if (transform.position.y > verticalBoundary)
+        if (transform.position.x > horizontalBoundary)
         {
             bulletManager.ReturnBullet(gameObject);
         }
