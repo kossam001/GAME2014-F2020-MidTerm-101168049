@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Speed")]
     public float verticalSpeed;
     public float maxSpeed;
-    public float horizontalTValue;
+    public float verticalTValue;
 
     [Header("Bullet Firing")]
     public float fireDelay;
@@ -98,7 +98,8 @@ public class PlayerController : MonoBehaviour
 
         if (m_touchesEnded.x != 0.0f)
         {
-           transform.position = new Vector2(Mathf.Lerp(transform.position.x, m_touchesEnded.x, horizontalTValue), transform.position.y);
+            // Swap x and y
+           transform.position = new Vector2(transform.position.x, Mathf.Lerp(transform.position.y, m_touchesEnded.y, verticalTValue));
         }
         else
         {
